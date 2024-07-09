@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Project.Domain
 {
-    internal class User
+    public class User_
     {
         public Guid Id { get; set; }
         public string Login { get; set; }
