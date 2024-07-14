@@ -15,6 +15,7 @@ namespace Project.Application.Projects.Queries.GetProjectDetails
         
         public string Name { get; set; }
         public string Details { get; set; }
+        public string[] statusCombination { get; set; }
 
         public void Mapping(Profile profile)
         {
@@ -25,9 +26,9 @@ namespace Project.Application.Projects.Queries.GetProjectDetails
                 .ForMember(projectVm => projectVm.Details,
                     opt => opt.MapFrom(project => project.Details))
                 .ForMember(projectVm => projectVm.Id,
-                    opt => opt.MapFrom(project => project.Id));
-            //.ForMember(projectVm => projectVm.TasksId,
-            //opt => opt.MapFrom(project => project.TasksId));
+                    opt => opt.MapFrom(project => project.Id))
+                .ForMember(projectVm => projectVm.statusCombination,
+                    opt => opt.MapFrom(project => project.StatusCombination));
         }
     }
 }

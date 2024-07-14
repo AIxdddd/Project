@@ -14,6 +14,6 @@ namespace Project.Application.Projects.Queries.GetProjectDetails
         public List<Guid> TasksId { get; set; }
         public string Name { get; set; }
         public string Details { get; set; }
-        public enum StatusCombination { New, Closed }
+        public string[] statusCombination { get; set; }
     }
 }

@@ -19,14 +19,19 @@ namespace Project.Application.Projects.Commands.CreateProject
             _projectDbContext = dbContext;
         public async Task<Guid> Handle(CreateProjectCommand request, CancellationToken cancellationToken)
         {
+            var temp = request.StatusCombination;
+            if (temp == null)
+            {
+                temp = new string[] { "New", "In Work", "Something", "TO DO", "Ending", "Closed" };
+            }
             var project = new Project_
             {
                 Name = request.Name,
                 Details = request.Details,
                 AuthorId = request.AuthorId,
                 Id = Guid.NewGuid(),
-                TasksId = new List<Task_> { }
-                //status combination
+                TasksId = new List<Task_> { },
+                StatusCombination = temp
             };
 
             await _projectDbContext.Projects_.AddAsync(project, cancellationToken);

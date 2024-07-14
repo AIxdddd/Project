@@ -19,7 +19,13 @@ namespace Project.Application.Tasks.Commands.ChangeStatus
             var entity =
             await _projectDbContext.Tasks_.FirstOrDefaultAsync(Task =>
             Task.Id == request.Id, cancellationToken);
-            entity.Status = request.Status;
+            var entity1 =
+            await _projectDbContext.Projects_.FirstOrDefaultAsync(Project =>
+            Project.Id == entity.ProjectId, cancellationToken);
+            if (Array.IndexOf(entity1.StatusCombination, entity.Status) != (entity1.StatusCombination.Length - 1))
+            {
+                entity.Status = entity1.StatusCombination[Array.IndexOf(entity1.StatusCombination, entity.Status) + 1];
+            }
             await _projectDbContext.SaveChangesAsync(cancellationToken);
             return Unit.Value;
         }

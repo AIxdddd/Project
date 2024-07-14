@@ -19,6 +19,6 @@ namespace Project.Domain
         public List<Task_> TasksId { get; set; }
         public string Name { get; set; }
         public string Details { get; set; }
-        public enum StatusCombination { New, Closed }
+        public string[] StatusCombination { get; set; }
     }
 }
